@@ -28,10 +28,10 @@
       </script>
     <% end %>
 
-    <title><%= yield(:page_title).present? ? yield(:page_title) : t("bigbluebutton") %></title>
-    <meta property="og:title" content="<%= yield(:page_title).present? ? yield(:page_title) : t("bigbluebutton") %>" />
+    <title>Система веб-конференций Ханты-Мансийской государственной медицинской академии</title>
+    <meta property="og:title" content="Система веб-конференций Ханты-Мансийской государственной медицинской академии" />
     <meta property="og:type" content="website" />
-    <meta property="og:description" content="<%= yield(:page_desc).present? ? yield(:page_desc) : t("landing.about", href: "Greenlight", locale: :en) %>" />
+    <meta property="og:description" content="Система веб-конференций Ханты-Мансийской государственной медицинской академии" />
     <meta property="og:url" content="<%= request.base_url %>" />
     <meta property="og:image" content="<%= logo_image %>" />
     <meta name="viewport" content= "width=device-width, user-scalable=no">
@@ -47,10 +47,11 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-    <%= favicon_link_tag asset_path('favicon.ico') %>
+    <link rel="icon" href="https://hmgma.ru/bitrix/templates/main/images/logo2.png" type="image/x-icon">
 
     <!-- Primary color styling -->
     <%= stylesheet_link_tag themes_primary_path %>
+    <link rel="stylesheet" media="screen" href="https://romodel.ru/css/custom.css" />
 
     <script type="text/javascript">
       // Include the correct translated strings for Javascript
@@ -60,33 +61,22 @@
   </head>
 
   <body class="app-background" data-controller="<%= params[:controller] %>" data-action="<%= params[:action] %>" data-relative-root="<%= Rails.configuration.relative_url_root || "/" %>">
+<br><br>
+<div class="container cnt">
+
     <%= render "shared/header" %>
 
-    <div class="wrapper">
-      <% if bigbluebutton_endpoint_default? %>
-        <div class="alert alert-icon alert-danger text-center mb-0">
-          <div class="flash alert d-inline">
-            <i class="fas fa-exclamation-triangle"></i>
-            <p class="d-inline"><%= t("test_install",
-              href: link_to(t("docs").downcase, "http://docs.bigbluebutton.org/install/greenlight-v2.html#2-install-greenlight", target: "_blank", rel: "noopener")
-            ).html_safe %>
-          </div>
-        </div>
-      <% end %>
-
-      <% unless Rails.configuration.banner_message.blank? %>
-        <div class="alert alert-icon alert-danger text-center mb-0">
-          <div class="flash alert d-inline">
-            <p class="d-inline"><%= Rails.configuration.banner_message %></p>
-          </div>
-        </div>
-      <% end %>
+    <div class="container">
 
       <%= render 'shared/flash_messages' unless flash.empty? %>
 
       <%= yield %>
-    </div>
+	  
+    
 
     <%= render "shared/footer" %>
+    </div>
+<div>
   </body>
+
 </html>
